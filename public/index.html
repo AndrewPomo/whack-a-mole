@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Bustin' Bieber</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=VT323' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Orbitron:900' rel='stylesheet' type='text/css'>
+	<style type="text/css">
+	body {
+		font-family: Open Sans;
+	}
+
+	/*.div, img {
+		position:relative;
+	}*/
+
+	.title {
+		font-family:Open Sans;
+	}
+
+	.gameArea {
+		width:500px;
+		background-color: white;
+		top:30px;
+		margin:auto;
+		position:relative;
+
+	}
+
+	.gameRow {
+		background-color: white;
+	}
+
+	.blocker {
+		background-color: white;
+		width:100%;
+		height:1000px;
+		position: absolute;
+		top:50px;
+	}
+
+	#topRow	{
+		position:absolute;
+		z-index: 0;
+	}
+
+	.activeBieber {
+		position:relative;
+	}
+
+	#topRow .topHalf	{
+		z-index: 1
+	}
+
+	#topRow  .activeBieber	{
+		z-index: 2;
+	}
+
+	#topRow .blocker {
+		z-index:3;
+	}
+
+	#topRow .bottomHalf	{
+		z-index: 4
+	}
+
+	#middleRow	{
+		position:absolute;
+		top: 100px;
+		z-index: 50
+	}
+
+	#middleRow  .topHalf	{
+		z-index: 51
+	}
+
+	#middleRow .activeBieber	{
+		z-index: 52;
+	}
+
+	#middleRow .blocker {
+		z-index:53;
+	}
+
+	#middleRow  .bottomHalf	{
+		z-index: 54
+	}
+
+	#bottomRow	{
+		position:absolute;
+		top: 200px;
+		z-index: 100
+	}
+
+	#bottomRow .topHalf	{
+		z-index: 101
+	}
+
+	#bottomRow .activeBieber	{
+		z-index: 102;
+	}
+
+	#bottomRow .blocker {
+		z-index:103;
+	}
+
+	#bottomRow .bottomHalf	{
+		z-index: 104
+	}
+
+	.bieberPit {
+		float:left;
+		margin:10px;
+	}
+
+	.menu	{
+		position:absolute;
+		top:350px;
+	}
+
+	.topHalf {
+	    background-color: black;
+	    width: 145px;
+	    height: 40px;
+	    border-radius: 50% / 100%;
+	    border-bottom-left-radius: 0;
+	    border-bottom-right-radius: 0;
+	    position:relative;
+	}
+
+	.bottomHalf {
+	    background-color: black;
+	    width: 145px;
+	    height: 40px;
+	    border-radius: 50% / 100%;
+	    border-top-left-radius: 0;
+	    border-top-right-radius: 0;
+	    position:relative;
+	}
+
+	.startBtn {
+		margin-top:5px;
+		font-family:VT323;
+		font-size: 16px;
+		background-color: white;
+	}
+
+	.roundNum {
+		background-color: black;
+		border:none;
+		margin-top:15px;
+		font-size: 20px;
+		font-weight: bold;
+		color:darkred;
+		opacity:0;
+		width:500px;
+		font-family: Orbitron;
+	}
+
+	button:focus {
+    background-color: none;
+    outline: 0;
+    -webkit-box-shadow: none;
+          box-shadow: none;
+}
+	
+
+	</style>
+</head>
+<body>
+	<div class="container">
+		<h1 class="title center-block text-center">Bustin' Bieber!</h1>
+		<div class="gameArea center-block">
+			<div class="gameRow row center-block" id='topRow'>
+				<div class="bieberPit" id="bieberPitOne">
+					<div class="topHalf"></div>
+					<div class="bottomHalf"></div>
+					<div class="blocker"></div>
+				</div>
+				<div class="bieberPit" id="bieberPitTwo">
+					<div class="topHalf"></div>
+					<div class="bottomHalf"></div>
+					<div class="blocker"></div>
+				</div>
+				<div class="bieberPit" id="bieberPitThree">
+					<div class="topHalf"></div>
+					<div class="bottomHalf"></div>
+					<div class="blocker"></div>
+				</div>
+			</div>
+			<div class="gameRow row center-block" id='middleRow'>
+				<div class="bieberPit" id="bieberPitFour">
+					<div class="topHalf"></div>
+					<div class="bottomHalf"></div>
+					<div class="blocker"></div>
+				</div>
+				<div class="bieberPit" id="bieberPitFive">
+					<div class="topHalf"></div>
+					<div class="bottomHalf"></div>
+					<div class="blocker"></div>
+				</div>
+				<div class="bieberPit" id="bieberPitSix">
+					<div class="topHalf"></div>
+					<div class="bottomHalf"></div>
+					<div class="blocker"></div>
+				</div>
+			</div>
+			<div class="gameRow row center-block" id='bottomRow'>
+				<div class="bieberPit" id="bieberPitSeven">
+					<div class="topHalf"></div>
+					<div class="bottomHalf"></div>
+					<div class="blocker"></div>
+				</div>
+				<div class="bieberPit" id="bieberPitEight">
+					<div class="topHalf"></div>
+					<div class="bottomHalf"></div>
+					<div class="blocker"></div>
+				</div>
+				<div class="bieberPit" id="bieberPitNine">
+					<div class="topHalf"></div>
+					<div class="bottomHalf"></div>
+					<div class="blocker"></div>
+				</div>
+			</div>
+		</div>
+		<div class="menu">
+				<input class="roundNum center-block text-center">
+		    	<button id="start" class="startBtn center-block">Click to start!</button>
+	    </div>
+	</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+<script>
+
+"use strict";
+(function() {
+			
+    $(document).ready(function() {
+
+    	//available biebers
+	    var biebers = ['bieberHat', 'bieberHair', 'bieberMugshot', 'bieberWink'];
+
+	    //available bieber pits
+	    var bieberPits = ["#bieberPitOne", "#bieberPitTwo", "#bieberPitThree", "#bieberPitFour", "#bieberPitFive", "#bieberPitSix", "#bieberPitSeven", "#bieberPitEight", "#bieberPitNine"];
+	    
+	    // Start button puts the selected bieber in the selected bieberPit
+	    $('.startBtn').click(function(event) {
+	    	//selects a random bieber
+	    	var bieber = biebers[Math.floor(Math.random()*biebers.length)];
+	    	console.log('The first bieber is: ' + bieber)
+
+	    //selects a random bieber pit
+	    	var bieberPit = bieberPits[Math.floor(Math.random()*bieberPits.length)];
+	    	console.log('The first bieber pit is: ' + bieberPit)
+	    	$('<img class="activeBieber center-block" src="/img/' + bieber + '.png">').css('top', '0').appendTo(bieberPit).animate({
+	    		'top': '-180px'
+	    	}, 500);
+
+	    })
+
+	    // Clicking the active bieber makes it go away. Select a new bieber and put it in a new bieber pit.
+
+	    $('.bieberPit').on('click', '.activeBieber', function() {
+	    	$('.activeBieber').remove();
+	    	var bieber = biebers[Math.floor(Math.random()*biebers.length)];
+	    	var bieberPit = bieberPits[Math.floor(Math.random()*bieberPits.length)];
+	    	console.log('The new bieber is: ' + bieber)
+	    	console.log('The new bieber pit is: ' + bieberPit)
+	    	$('<img class="activeBieber center-block" src="/img/' + bieber + '.png">').css('top', '0').appendTo(bieberPit).animate({
+	    		'top': '-190px'
+	    	}, 500);
+	    });
+    })
+})();
+
+</script>
+</body>
+</html>
