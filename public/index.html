@@ -35,9 +35,11 @@
 	.blocker {
 		background-color: white;
 		width:100%;
-		height:1000px;
+		height:200px;
+		width: 500px;
 		position: absolute;
 		top:50px;
+		left:0px;
 	}
 
 	#topRow	{
@@ -146,16 +148,20 @@
 		background-color: white;
 	}
 
-	.roundNum {
-		background-color: black;
+	.scoreNum {
+		background-color: white;
 		border:none;
 		margin-top:15px;
 		font-size: 20px;
 		font-weight: bold;
-		color:darkred;
-		opacity:0;
+		color:black;
 		width:500px;
 		font-family: Orbitron;
+		z-index:1000;
+	}
+
+	.menu {
+		z-index:1000;
 	}
 
 	button:focus {
@@ -176,24 +182,21 @@
 				<div class="bieberPit" id="bieberPitOne">
 					<div class="topHalf"></div>
 					<div class="bottomHalf"></div>
-					<div class="blocker"></div>
 				</div>
 				<div class="bieberPit" id="bieberPitTwo">
 					<div class="topHalf"></div>
 					<div class="bottomHalf"></div>
-					<div class="blocker"></div>
+					<div class="blocker center-block "></div>
 				</div>
 				<div class="bieberPit" id="bieberPitThree">
 					<div class="topHalf"></div>
 					<div class="bottomHalf"></div>
-					<div class="blocker"></div>
 				</div>
 			</div>
 			<div class="gameRow row center-block" id='middleRow'>
 				<div class="bieberPit" id="bieberPitFour">
 					<div class="topHalf"></div>
 					<div class="bottomHalf"></div>
-					<div class="blocker"></div>
 				</div>
 				<div class="bieberPit" id="bieberPitFive">
 					<div class="topHalf"></div>
@@ -203,14 +206,12 @@
 				<div class="bieberPit" id="bieberPitSix">
 					<div class="topHalf"></div>
 					<div class="bottomHalf"></div>
-					<div class="blocker"></div>
 				</div>
 			</div>
 			<div class="gameRow row center-block" id='bottomRow'>
 				<div class="bieberPit" id="bieberPitSeven">
 					<div class="topHalf"></div>
 					<div class="bottomHalf"></div>
-					<div class="blocker"></div>
 				</div>
 				<div class="bieberPit" id="bieberPitEight">
 					<div class="topHalf"></div>
@@ -220,12 +221,12 @@
 				<div class="bieberPit" id="bieberPitNine">
 					<div class="topHalf"></div>
 					<div class="bottomHalf"></div>
-					<div class="blocker"></div>
 				</div>
 			</div>
 		</div>
 		<div class="menu">
-				<input class="roundNum center-block text-center">
+				<input class="scoreNum center-block text-center" value="Score: 0">
+				<input class="timer center-block text-center">
 		    	<button id="start" class="startBtn center-block">Click to start!</button>
 	    </div>
 	</div>
@@ -240,10 +241,18 @@
     $(document).ready(function() {
 
     	//available biebers
-	    var biebers = ['bieberHat', 'bieberHair', 'bieberMugshot', 'bieberWink'];
+	    var biebers = ['bieberDumb', 'bieberHair', 'bieberMugshot', 'bieberWink'];
 
 	    //available bieber pits
 	    var bieberPits = ["#bieberPitOne", "#bieberPitTwo", "#bieberPitThree", "#bieberPitFour", "#bieberPitFive", "#bieberPitSix", "#bieberPitSeven", "#bieberPitEight", "#bieberPitNine"];
+
+	    // the player's score
+	    var score = 0
+
+	    // Time left in round
+	    var timer = 0
+
+	    $('.timer').val(timer)
 	    
 	    // Start button puts the selected bieber in the selected bieberPit
 	    $('.startBtn').click(function(event) {
@@ -258,19 +267,35 @@
 	    		'top': '-180px'
 	    	}, 500);
 
-	    })
+	    	var timer = 30;
+		    setInterval(function() {
+	    		if (timer > 0) {
+	    			timer--;
+			    	$('.timer').val(timer);
+	    		}
+	    	}, 1000);	
+	    });
 
 	    // Clicking the active bieber makes it go away. Select a new bieber and put it in a new bieber pit.
 
 	    $('.bieberPit').on('click', '.activeBieber', function() {
-	    	$('.activeBieber').remove();
+	    	$('.activeBieber').animate({
+	    		'top': '0px'
+	    	}, 500);
+	    	setTimeout (function() {
+	    		$('.activeBieber').remove();
+	    	}, 500);
+	    	score++
+	    	$('.scoreNum').val('Score: ' + score);
 	    	var bieber = biebers[Math.floor(Math.random()*biebers.length)];
 	    	var bieberPit = bieberPits[Math.floor(Math.random()*bieberPits.length)];
 	    	console.log('The new bieber is: ' + bieber)
 	    	console.log('The new bieber pit is: ' + bieberPit)
-	    	$('<img class="activeBieber center-block" src="/img/' + bieber + '.png">').css('top', '0').appendTo(bieberPit).animate({
-	    		'top': '-190px'
-	    	}, 500);
+	    	setTimeout (function() {
+		    	$('<img class="activeBieber center-block" src="/img/' + bieber + '.png">').css('top', '0').appendTo(bieberPit).animate({
+		    		'top': '-190px'
+		    	}, 500);
+		    }, 550);
 	    });
     })
 })();
