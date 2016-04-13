@@ -1,0 +1,173 @@
+body {
+        font-family: Open Sans;
+    }
+
+.mainContainer {
+    width: 100%;
+}
+
+.gameArea {
+    width: 500px;
+    background-color: #611369;
+    top: 30px;
+    margin: auto;
+    position: relative;
+}
+
+.gameRow {
+    width: 500px;
+}
+
+.activeBieber {
+    position: relative;
+}
+
+.bieberPit {
+    float: left;
+    margin: 10px;
+    margin-left: 11.671px;
+}
+
+.topHalf {
+    background-color: black;
+    width: 145px;
+    height: 40px;
+    border-radius: 50% / 100%;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    position: relative;
+}
+
+.bottomHalf {
+    background-color: black;
+    width: 145px;
+    height: 40px;
+    border-radius: 50% / 100%;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    position: relative;
+}
+
+.blocker {
+    background-color: #611369;
+    width: 100%;
+    height: 177px;
+    position: absolute;
+    top: 50px;
+    left: 0px;
+}
+
+#topRow {
+    background-color: #611369;
+    position: absolute;
+    z-index: 0;
+}
+
+#topRow .topHalf    {
+    z-index: 1
+}
+
+#topRow  .activeBieber  {
+    z-index: 2;
+}
+
+#topRow .blocker {
+    z-index: 3;
+}
+
+#topRow .bottomHalf {
+    z-index: 4
+}
+
+#middleRow  {
+    position:absolute;
+    top: 100px;
+    z-index: 50
+}
+
+#middleRow  .topHalf    {
+    z-index: 51
+}
+
+#middleRow .activeBieber    {
+    z-index: 52;
+}
+
+#middleRow .blocker {
+    z-index: 53;
+}
+
+#middleRow  .bottomHalf {
+    z-index: 54
+}
+
+#bottomRow  {
+    position: absolute;
+    top: 200px;
+    z-index: 100
+}
+
+#bottomRow .topHalf {
+    z-index: 101
+}
+
+#bottomRow .activeBieber    {
+    z-index: 102;
+}
+
+#bottomRow .blocker {
+    z-index: 103;
+}
+
+#bottomRow .bottomHalf  {
+    z-index: 104
+}
+
+#bottomBlocker, #middleBlocker {
+    height: 150px;
+}
+
+.fist {
+    position: absolute;
+    right: -1000px;
+    top: -50px;
+    z-index: 9999999999
+}
+
+.menu   {
+    position: relative;
+    top: 310px;
+    z-index: 1000;
+    background-color: white;
+}
+
+input   {
+    background-color: white;
+    border: none;
+    font-size: 20px;
+    font-weight: bold;
+    color: black;
+    width: 100px;
+    z-index: 1000;
+    float: left;
+}
+
+.inputLabel {
+    float: left;
+    font-size: 20px;
+    margin-bottom: 0px;
+}
+
+.startBtn {
+    margin-top: 5px;
+    font-size: 16px;
+    background-color: white;
+}
+
+
+button:focus {
+background-color: none;
+outline: 0;
+-webkit-box-shadow: none;
+      box-shadow: none;
+}
